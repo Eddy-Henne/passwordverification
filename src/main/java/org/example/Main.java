@@ -4,9 +4,10 @@ public class Main {
     public static void main(String[] args) {
 
         //Passwort-Eingabe und erfolgreich verifiziert
+
         String password = "oord";
         if(isPasswordValid(password)) {
-            System.out.println("Ihr gewähltes Passwort erfüllt alle Bedingungen für eine gute Sicherheit!");
+            System.out.println("Ihr Passwort ist sicher!");
         }
     }
 
@@ -19,8 +20,11 @@ public class Main {
             System.out.println("Ihr Passwort ist unsicher; verwenden Sie mindestens eine Zahl!");
         if (!containsUpperCaseAndLowerCase(password))
             System.out.println("Ihr Passwort ist unsicher; verwenden Sie Groß- und Kleinbuchstaben!");
+        if (!containsSpecialCharacters(password))
+            System.out.println("Ihr Passwort ist unsicher; verwenden Sie mindestens ein Sonderzeichen!");
 
-        return isPasswordLengthValid(password) && containsDigits(password) && containsUpperCaseAndLowerCase(password);
+        return isPasswordLengthValid(password) && containsDigits(password) && containsUpperCaseAndLowerCase(password)
+                && containsSpecialCharacters(password);
     }
 
         //Überprüfung mindestens 8 Zeichen
@@ -35,7 +39,7 @@ public class Main {
         for(char character : password.toCharArray()) {
             if (Character.isDigit(character))
                 return true;
-        }
+                }
         return false;
     }
 
@@ -48,14 +52,27 @@ public class Main {
         for(char character : password.toCharArray()) {
             if (Character.isUpperCase(character)) {
                 containsUpperCase = true;
-            }
+                }
                 else if (Character.isLowerCase(character)) {
                 containsLowerCase = true;
-            }
+                }
                 if (containsUpperCase && containsLowerCase) {
                     return true;
+                }
+            }
+        return false;
+    }
+
+        //Überprüfung besondere Zeichen
+
+    public static boolean containsSpecialCharacters(String password) {
+        for(char character : password.toCharArray()) {
+            if (!Character.isLetterOrDigit(character)) {
+                return true;
             }
         }
         return false;
     }
+
+
 }
