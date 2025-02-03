@@ -82,10 +82,10 @@ public class Main {
         String[] commonPasswords = {"Password1!", "Qwertz123!", "1iamGod!"};
 
         for (String commonPassword : commonPasswords) {
-            if (password.equals(commonPasswords)) {
-                return true;
+            if (password.equals(commonPassword)) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }
