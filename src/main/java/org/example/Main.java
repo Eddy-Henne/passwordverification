@@ -5,7 +5,7 @@ public class Main {
 
         //Passwort-Eingabe und erfolgreich verifiziert
 
-        String password = "oord";
+        String password = "Password1!";
         if(isPasswordValid(password)) {
             System.out.println("Ihr Passwort ist sicher!");
         }
@@ -22,9 +22,11 @@ public class Main {
             System.out.println("Ihr Passwort ist unsicher; verwenden Sie Groß- und Kleinbuchstaben!");
         if (!containsSpecialCharacters(password))
             System.out.println("Ihr Passwort ist unsicher; verwenden Sie mindestens ein Sonderzeichen!");
+        if (!isCommonPassword(password))
+            System.out.println("Ihr Passwort ist unsicher; verwenden Sie keine gewöhnlichen Passwörter!");
 
         return isPasswordLengthValid(password) && containsDigits(password) && containsUpperCaseAndLowerCase(password)
-                && containsSpecialCharacters(password);
+                && containsSpecialCharacters(password) && isCommonPassword(password);
     }
 
         //Überprüfung mindestens 8 Zeichen
@@ -74,5 +76,16 @@ public class Main {
         return false;
     }
 
+        //Überprüfung auf gewöhnliche Passwörter
 
+    public static boolean isCommonPassword(String password) {
+        String[] commonPasswords = {"Password1!", "Qwertz123!", "1iamGod!"};
+
+        for (String commonPassword : commonPasswords) {
+            if (password.equals(commonPasswords)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
